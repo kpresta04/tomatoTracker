@@ -33,15 +33,15 @@ var Clock = {
 function resetTimer() {
   // Clock.Timer(timeValue, disp);
   // let minutes = 30;
-  let seconds = 0;
+  // let seconds = 0;
   timeValue = 1800;
-  let minutes = timeValue / 60;
+  // let minutes = 30;
 
   disp.textContent = minutes + ":" + seconds + "0";
 }
-var timeValue = 1800;
-var minutes = timeValue / 60;
+var minutes = 30;
 var seconds = 00;
+var timeValue = minutes * 60;
 
 function startTimer() {
   Clock.Timer(timeValue, disp);
