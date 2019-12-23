@@ -28,7 +28,6 @@ var Clock = {
       }
     }
     this.Timer.timer = timer;
-    // we don't want to wait a full second before the timer starts
   }
 };
 function resetTimer() {
@@ -45,11 +44,10 @@ var minutes = timeValue / 60;
 var seconds = 00;
 
 function startTimer() {
-  //   Clock.Timer.timer();
-  //   setInterval(Clock.Timer.timer, 1000);
   Clock.Timer(timeValue, disp);
-  Clock.Timer.timer();
+  // we don't want to wait a full second before the timer starts
 
+  Clock.Timer.timer();
   interv = setInterval(Clock.Timer.timer, 1000);
 }
 window.onload = function() {
