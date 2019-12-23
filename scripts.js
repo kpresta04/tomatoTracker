@@ -26,12 +26,13 @@ var Clock = {
         start = Date.now() + 1000;
       }
     }
+    this.Timer.timer = timer;
     // we don't want to wait a full second before the timer starts
-    timer();
-    setInterval(timer, 1000);
   }
 };
 function resetTimer() {
+  Clock.Timer(timeValue, disp);
+
   disp.textContent = minutes + ":" + seconds + "0";
 }
 var timeValue = 1800;
@@ -41,7 +42,10 @@ var seconds = 00;
 function startTimer() {
   //   Clock.Timer.timer();
   //   setInterval(Clock.Timer.timer, 1000);
-  Clock.Timer(timeValue, disp);
+  // Clock.Timer(timeValue, disp);
+  Clock.Timer.timer();
+
+  interv = setInterval(Clock.Timer.timer, 1000);
 }
 window.onload = function() {
   //Initialize timer
@@ -52,13 +56,13 @@ window.onload = function() {
     .addEventListener("click", startTimer);
   //Stop button event
   this.document.querySelector("#stopBtn").addEventListener("click", function() {
-    clearInterval(Clock.Timer);
+    clearInterval(interv);
   });
   //Reset button event
   this.document
     .querySelector("#resetBtn")
     .addEventListener("click", function() {
-      clearInterval(Clock.Timer);
+      clearInterval(interv);
       resetTimer();
     });
 };
