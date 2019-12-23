@@ -1,89 +1,60 @@
-function CountDownTimer(duration, granularity) {
-  this.duration = duration;
-  this.granularity = granularity || 1000;
-  this.tickFtns = [];
-  this.running = false;
-}
+disp = document.querySelector("#timer");
 
-CountDownTimer.prototype.start = function() {
-  if (this.running) {
-    return;
-  }
-  this.running = true;
-  var start = Date.now(),
-    that = this,
-    diff,
-    obj;
+var Clock = {
+  Timer: function(duration, display) {
+    var start = Date.now(),
+      diff,
+      minutes,
+      seconds;
+    function timer() {
+      // get the number of seconds that have elapsed since
+      // startTimer() was called
+      diff = duration - (((Date.now() - start) / 1000) | 0);
 
-  (function timer() {
-    diff = that.duration - (((Date.now() - start) / 1000) | 0);
+      // does the same job as parseInt truncates the float
+      minutes = (diff / 60) | 0;
+      seconds = diff % 60 | 0;
 
-    if (diff > 0) {
-      setTimeout(timer, that.granularity);
-    } else {
-      diff = 0;
-      that.running = false;
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      display.textContent = minutes + ":" + seconds;
+
+      if (diff <= 0) {
+        // add one second so that the count down starts at the full duration
+        // example 05:00 not 04:59
+        start = Date.now() + 1000;
+      }
     }
-
-    obj = CountDownTimer.parse(diff);
-    that.tickFtns.forEach(function(ftn) {
-      ftn.call(this, obj.minutes, obj.seconds);
-    }, that);
-  })();
-};
-
-CountDownTimer.prototype.onTick = function(ftn) {
-  if (typeof ftn === "function") {
-    this.tickFtns.push(ftn);
+    // we don't want to wait a full second before the timer starts
+    timer();
+    setInterval(timer, 1000);
   }
-  return this;
-};
-
-CountDownTimer.prototype.expired = function() {
-  return !this.running;
-};
-
-CountDownTimer.parse = function(seconds) {
-  return {
-    minutes: (seconds / 60) | 0,
-    seconds: seconds % 60 | 0
-  };
 };
 function resetTimer() {
-  this.running = false;
-  var display = document.querySelector("#timer"),
-    timer = new CountDownTimer(1800),
-    timeObj = CountDownTimer.parse(1800);
-  format(timeObj.minutes, timeObj.seconds);
-  timer.onTick(format);
-  function format(minutes, seconds) {
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-    display.textContent = minutes + ":" + seconds;
-  }
+  disp.textContent = minutes + ":" + seconds + "0";
 }
+var timeValue = 1800;
+var minutes = timeValue / 60;
+var seconds = 00;
 window.onload = function() {
-  var display = document.querySelector("#timer"),
-    timer = new CountDownTimer(1800),
-    timeObj = CountDownTimer.parse(1800);
-
-  format(timeObj.minutes, timeObj.seconds);
-
-  timer.onTick(format);
-
-  document.querySelector("#startBtn").addEventListener("click", function() {
-    timer.start();
+  //Initialize timer
+  this.resetTimer();
+  //Start button even
+  this.document
+    .querySelector("#startBtn")
+    .addEventListener("click", function() {
+      Clock.Timer(timeValue, disp);
+    });
+  //Stop button event
+  this.document.querySelector("#stopBtn").addEventListener("click", function() {
+    clearInterval(Clock.Timer);
   });
-  document.querySelector("#stopBtn").addEventListener("click", function() {
-    CountDownTimer.running = false;
-  });
-  document
+  //Reset button event
+  this.document
     .querySelector("#resetBtn")
-    .addEventListener("click", this.resetTimer);
-
-  function format(minutes, seconds) {
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-    display.textContent = minutes + ":" + seconds;
-  }
+    .addEventListener("click", function() {
+      clearInterval(Clock.Timer);
+      resetTimer();
+    });
 };
