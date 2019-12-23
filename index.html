@@ -22,12 +22,20 @@
   <body>
     <div class="container">
       <div class="col">
-        <div class="row">
-          <h1>30:00</h1>
+        <div class="row justify-content-center">
+          <h1 id="timer"></h1>
         </div>
         <!-- button row -->
-        <div class="row">
-          <!-- row stuff -->
+        <div class="row justify-content-center">
+          <button type="button" class="btn btn-success mx-4" id="startBtn">
+            Start
+          </button>
+          <button type="button" class="btn btn-info mx-4" id="stopBtn">
+            Stop
+          </button>
+          <button type="button" class="btn btn-dark mx-4" id="resetBtn">
+            Reset
+          </button>
         </div>
       </div>
     </div>
@@ -48,5 +56,9 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
+    <script src="scripts.js"></script>
+
+
+    </script>
   </body>
 </html>

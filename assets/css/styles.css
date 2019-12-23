@@ -2,3 +2,11 @@ h1 {
   font-size: 72pt;
   font-weight: bold;
 }
+
+#resetBtn,
+#stopBtn,
+#startBtn {
+  font-size: 24px;
+  padding: 15px 30px 16px;
+  margin-top: 1em;
+}
