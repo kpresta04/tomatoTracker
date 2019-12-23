@@ -14,6 +14,7 @@ var Clock = {
       // does the same job as parseInt truncates the float
       minutes = (diff / 60) | 0;
       seconds = diff % 60 | 0;
+      timeValue--;
 
       minutes = minutes < 10 ? "0" + minutes : minutes;
       seconds = seconds < 10 ? "0" + seconds : seconds;
@@ -31,7 +32,11 @@ var Clock = {
   }
 };
 function resetTimer() {
-  Clock.Timer(timeValue, disp);
+  // Clock.Timer(timeValue, disp);
+  // let minutes = 30;
+  let seconds = 0;
+  timeValue = 1800;
+  let minutes = timeValue / 60;
 
   disp.textContent = minutes + ":" + seconds + "0";
 }
@@ -42,7 +47,7 @@ var seconds = 00;
 function startTimer() {
   //   Clock.Timer.timer();
   //   setInterval(Clock.Timer.timer, 1000);
-  // Clock.Timer(timeValue, disp);
+  Clock.Timer(timeValue, disp);
   Clock.Timer.timer();
 
   interv = setInterval(Clock.Timer.timer, 1000);
