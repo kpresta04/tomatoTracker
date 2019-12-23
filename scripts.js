@@ -37,15 +37,19 @@ function resetTimer() {
 var timeValue = 1800;
 var minutes = timeValue / 60;
 var seconds = 00;
+
+function startTimer() {
+  //   Clock.Timer.timer();
+  //   setInterval(Clock.Timer.timer, 1000);
+  Clock.Timer(timeValue, disp);
+}
 window.onload = function() {
   //Initialize timer
   this.resetTimer();
   //Start button even
   this.document
     .querySelector("#startBtn")
-    .addEventListener("click", function() {
-      Clock.Timer(timeValue, disp);
-    });
+    .addEventListener("click", startTimer);
   //Stop button event
   this.document.querySelector("#stopBtn").addEventListener("click", function() {
     clearInterval(Clock.Timer);
