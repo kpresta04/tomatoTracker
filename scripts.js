@@ -31,21 +31,27 @@ var Clock = {
   }
 };
 function resetTimer() {
+  running = false;
   //reset timeValue
   timeValue = minutes * 60;
+
   //display timeValue
   disp.textContent = minutes + ":" + seconds + "0";
 }
+var running = false;
 var minutes = 30;
 var seconds = 0;
 var timeValue = minutes * 60;
 
 function startTimer() {
-  Clock.Timer(timeValue, disp);
-  // we don't want to wait a full second before the timer starts
+  if (!running) {
+    Clock.Timer(timeValue, disp);
+    // we don't want to wait a full second before the timer starts
 
-  Clock.Timer.timer();
-  interv = setInterval(Clock.Timer.timer, 1000);
+    Clock.Timer.timer();
+    interv = setInterval(Clock.Timer.timer, 1000);
+    running = true;
+  }
 }
 window.onload = function() {
   //Initialize timer
@@ -57,6 +63,7 @@ window.onload = function() {
   //Stop button event
   this.document.querySelector("#stopBtn").addEventListener("click", function() {
     clearInterval(interv);
+    running = false;
   });
   //Reset button event
   this.document
