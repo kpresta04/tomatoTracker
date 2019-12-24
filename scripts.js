@@ -38,12 +38,15 @@ function resetTimer() {
   //display timeValue
   disp.textContent = minutes + ":" + seconds + "0";
 }
+
+//initial variables
 var running = false;
 var minutes = 30;
 var seconds = 0;
 var timeValue = minutes * 60;
 
 function startTimer() {
+  //Check if already running first
   if (!running) {
     Clock.Timer(timeValue, disp);
     // we don't want to wait a full second before the timer starts
