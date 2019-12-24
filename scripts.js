@@ -31,16 +31,13 @@ var Clock = {
   }
 };
 function resetTimer() {
-  // Clock.Timer(timeValue, disp);
-  // let minutes = 30;
-  // let seconds = 0;
-  timeValue = 1800;
-  // let minutes = 30;
-
+  //reset timeValue
+  timeValue = minutes * 60;
+  //display timeValue
   disp.textContent = minutes + ":" + seconds + "0";
 }
 var minutes = 30;
-var seconds = 00;
+var seconds = 0;
 var timeValue = minutes * 60;
 
 function startTimer() {
