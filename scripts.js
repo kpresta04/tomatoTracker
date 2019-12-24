@@ -20,6 +20,10 @@ var Clock = {
       seconds = seconds < 10 ? "0" + seconds : seconds;
 
       display.textContent = minutes + ":" + seconds;
+      if (timeValue === -1) {
+        playSound();
+        stopTimer();
+      }
 
       if (diff <= 0) {
         // add one second so that the count down starts at the full duration
@@ -30,6 +34,9 @@ var Clock = {
     this.Timer.timer = timer;
   }
 };
+function playSound() {
+  document.querySelector("#doorbell").play();
+}
 function resetTimer() {
   running = false;
   //reset timeValue
@@ -41,13 +48,13 @@ function resetTimer() {
 
 //initial variables
 var running = false;
-var minutes = 30;
+var minutes = 1;
 var seconds = 0;
 var timeValue = minutes * 60;
 
 function startTimer() {
   //Check if already running first
-  if (!running) {
+  if (!running && timeValue >= 0) {
     Clock.Timer(timeValue, disp);
     // we don't want to wait a full second before the timer starts
 
@@ -55,6 +62,10 @@ function startTimer() {
     interv = setInterval(Clock.Timer.timer, 1000);
     running = true;
   }
+}
+function stopTimer() {
+  clearInterval(interv);
+  running = false;
 }
 window.onload = function() {
   //Initialize timer
@@ -64,10 +75,7 @@ window.onload = function() {
     .querySelector("#startBtn")
     .addEventListener("click", startTimer);
   //Stop button event
-  this.document.querySelector("#stopBtn").addEventListener("click", function() {
-    clearInterval(interv);
-    running = false;
-  });
+  this.document.querySelector("#stopBtn").addEventListener("click", stopTimer);
   //Reset button event
   this.document
     .querySelector("#resetBtn")
