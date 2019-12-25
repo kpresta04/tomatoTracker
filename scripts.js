@@ -21,8 +21,7 @@ var Clock = {
 
       display.textContent = minutes + ":" + seconds;
       if (timeValue === -1) {
-        playSound();
-        stopTimer();
+        onCompletion();
       }
 
       if (diff <= 0) {
@@ -48,7 +47,7 @@ function resetTimer() {
 
 //initial variables
 var running = false;
-var minutes = 1;
+var minutes = 30;
 var seconds = 0;
 var timeValue = minutes * 60;
 
@@ -62,6 +61,13 @@ function startTimer() {
     interv = setInterval(Clock.Timer.timer, 1000);
     running = true;
   }
+}
+function onCompletion() {
+  playSound();
+  stopTimer();
+  $("#tomatoRow").append(
+    '<img class="tomatoImage" src="assets/images/tomato1.jpg" />'
+  );
 }
 function stopTimer() {
   clearInterval(interv);
