@@ -47,7 +47,7 @@ function resetTimer() {
 
 //initial variables
 var running = false;
-var minutes = 30;
+var minutes = 1;
 var seconds = 0;
 var timeValue = minutes * 60;
 
