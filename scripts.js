@@ -19,7 +19,7 @@ var Clock = {
       minutes = minutes < 10 ? "0" + minutes : minutes;
       seconds = seconds < 10 ? "0" + seconds : seconds;
 
-      formatted_time = minutes + ":" + seconds;
+      let formatted_time = minutes + ":" + seconds;
 
       display.textContent = formatted_time;
       $("#title").text(`Tomato Tracker! ${formatted_time}`);
