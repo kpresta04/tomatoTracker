@@ -19,8 +19,10 @@ var Clock = {
       minutes = minutes < 10 ? "0" + minutes : minutes;
       seconds = seconds < 10 ? "0" + seconds : seconds;
 
-      display.textContent = minutes + ":" + seconds;
-      $("#title").text(`Tomato Tracker! ${minutes}:${seconds}`);
+      formatted_time = minutes + ":" + seconds;
+
+      display.textContent = formatted_time;
+      $("#title").text(`Tomato Tracker! ${formatted_time}`);
       if (timeValue === -1) {
         onCompletion();
       }
