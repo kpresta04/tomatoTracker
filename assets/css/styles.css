@@ -1,3 +1,11 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  font-family: "Roboto Mono", monospace;
+}
+
 h1 {
   font-size: 72pt;
   font-weight: bold;
