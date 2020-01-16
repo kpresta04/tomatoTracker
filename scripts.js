@@ -64,7 +64,7 @@ $(document).ready(function() {
 
   //initial variables
   let running = false;
-  let minutes = 30;
+  let minutes = 25;
   let seconds = 0;
   let timeValue = minutes * 60;
 
