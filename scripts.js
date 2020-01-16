@@ -1,5 +1,12 @@
 disp = document.querySelector("#timer");
 
+let tomatoCount = 0;
+let getObj = JSON.parse(localStorage.getItem("storeObj"));
+if (getObj !== null) {
+  // console.log(getObj);
+  tomatoCount = getObj;
+}
+
 var Clock = {
   Timer: function(duration, display) {
     var start = Date.now(),
