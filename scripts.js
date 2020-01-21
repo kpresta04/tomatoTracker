@@ -13,6 +13,25 @@ $(document).ready(function() {
       '<img class="tomatoImage" src="assets/images/tomato1.jpg" />'
     );
   }
+  let checked_btn;
+  $("#option1").on("click", e => {
+    // console.log(e.target);
+    if (running === false) {
+      checked_btn = "tomato";
+      minutes = 25;
+      resetTimer();
+    }
+  });
+
+  $("#option2").on("click", e => {
+    // console.log(e.target);
+
+    if (running === false) {
+      checked_btn = "break";
+      minutes = 5;
+      resetTimer();
+    }
+  });
 
   const Clock = {
     Timer: function(duration, display) {
@@ -82,13 +101,15 @@ $(document).ready(function() {
   function onCompletion() {
     playSound();
     stopTimer();
-    tomatoCount++;
-    $("#tomatoLabel").text(`Tomato count: ${tomatoCount}`);
+    if (checked_btn === "tomato") {
+      tomatoCount++;
+      $("#tomatoLabel").text(`Tomato count: ${tomatoCount}`);
 
-    localStorage.setItem("tomatoObj", JSON.stringify(tomatoCount));
-    $("#tomatoRow").append(
-      '<img class="tomatoImage" src="assets/images/tomato1.jpg" />'
-    );
+      localStorage.setItem("tomatoObj", JSON.stringify(tomatoCount));
+      $("#tomatoRow").append(
+        '<img class="tomatoImage" src="assets/images/tomato1.jpg" />'
+      );
+    }
   }
   function stopTimer() {
     clearInterval(interv);
