@@ -13,12 +13,23 @@ $(document).ready(function() {
       '<img class="tomatoImage" src="assets/images/tomato1.jpg" />'
     );
   }
+  $("#timerLength").on("change", function() {
+    if (running === false) {
+      minutes = $("#timerLength").val();
+
+      //reset timeValue
+      timeValue = minutes * 60;
+      //display timeValue
+
+      disp.textContent = minutes + ":" + seconds + "0";
+    }
+  });
   let checked_btn;
   $("#option1").on("click", e => {
     // console.log(e.target);
     if (running === false) {
       checked_btn = "tomato";
-      minutes = 25;
+      minutes = $("#timerLength").val();
       resetTimer();
     }
   });
@@ -83,9 +94,10 @@ $(document).ready(function() {
 
   //initial variables
   let running = false;
-  let minutes = 25;
+  let minutes = $("#timerLength").val();
   let seconds = 0;
   let timeValue = minutes * 60;
+  var interv;
 
   function startTimer() {
     //Check if already running first
@@ -101,7 +113,7 @@ $(document).ready(function() {
   function onCompletion() {
     playSound();
     stopTimer();
-    if (checked_btn === "tomato") {
+    if (checked_btn !== "break") {
       tomatoCount++;
       $("#tomatoLabel").text(`Tomato count: ${tomatoCount}`);
 
