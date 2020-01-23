@@ -97,7 +97,7 @@ $(document).ready(function() {
   let minutes = $("#timerLength").val();
   let seconds = 0;
   let timeValue = minutes * 60;
-  var interv;
+  let interv;
 
   function startTimer() {
     //Check if already running first
