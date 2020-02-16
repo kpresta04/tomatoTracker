@@ -1,5 +1,6 @@
 $(document).ready(function() {
-  disp = document.querySelector("#timer");
+  let disp = document.querySelector("#timer");
+  const checkBox = document.querySelector("#defaultCheck1");
 
   let tomatoCount = 0;
   let getObj = JSON.parse(localStorage.getItem("tomatoObj"));
@@ -121,6 +122,10 @@ $(document).ready(function() {
       $("#tomatoRow").append(
         '<img class="tomatoImage" src="assets/images/tomato1.jpg" />'
       );
+    }
+    if (checkBox.checked) {
+      resetTimer();
+      startTimer();
     }
   }
   function stopTimer() {
