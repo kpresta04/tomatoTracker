@@ -10,7 +10,13 @@ h1 {
   font-size: 72pt;
   font-weight: bold;
 }
-
+#defaultCheck1 {
+  position: unset;
+  margin: 0.9em 0 0.9em 0.5em;
+}
+#rBoxLabel {
+  margin: 0.9em 0.5em 0.9em 0;
+}
 #resetBtn,
 #stopBtn,
 #startBtn {
